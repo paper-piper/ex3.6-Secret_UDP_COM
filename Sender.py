@@ -5,6 +5,8 @@ Description: sends secret messages through the usage of sending empty message to
 Date: 03-02-2023
 """
 
+# TODO: make sure all packets arrives using protocol
+# TODO: rename all project files
 from scapy.all import *
 from scapy.layers.inet import *
 import logging
