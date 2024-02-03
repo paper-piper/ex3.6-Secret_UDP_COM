@@ -1,42 +1,31 @@
 # Exercise 6.13 – Secret Communication Over Port Numbers
 
-## 🕵️‍♂️ Mission Brief
+## 🕵️‍♂️ Mission Accomplished
+Agents, congratulations on completing your mission! With your expertise, Yoav and Maor have successfully established a system for passing secret messages across the network, invisible to any prying eyes.
 
-Welcome, agent! Your mission, should you choose to accept it, involves top-secret communication. You will be assisting two covert operatives, Yoav and Maor, in their quest to pass clandestine messages across the digital divide, undetected by nefarious entities.
+## 🎯 Objective Achieved
+Our operatives have transcended traditional communication methods to transmit messages securely. By ingeniously employing port numbers as a cipher, they've ensured complete invisibility from network surveillance.
 
-## 🎯 Purpose
+## 🛠️ Strategy Deployed
+Leveraging the ASCII table as their codebook, our team encoded messages character by character. Each character's ASCII value determined the port number for sending an empty UDP message—a technique that guaranteed the message's secrecy.
 
-Our operatives must transmit messages securely, without the risk of interception. Even if malicious actors were to sniff the network traffic, they'd be none the wiser. How, you ask? Through the cunning use of port numbers as a cipher!
+## 📜 Scripts Developed
+- `client_message_secret.py`: Operated by the sender, this script prompts for a message and then transmits it covertly.
+- `server_message_secret.py`: Situated on the receiver's end, this script captures and deciphers the incoming messages.
 
-## 🛠️ The Plan
+## 🎁 Bonus Challenge Overcome
+Addressing UDP's inherent unreliability, our team devised a foolproof method ensuring messages arrive accurately and sequentially. This advanced protocol has significantly enhanced our communication security.
 
-The codebook for this operation is the ASCII table. Messages will be encoded one character at a time, using the ASCII value of each character as the port number for sending an empty UDP message. This method ensures that only someone with the key (i.e., this README) can decipher the message.
-
-## 📜 Scripts to Use
-
-- `py.client_message_secret`: This script, operated by the sender, prompts for a message and then transmits it covertly to the receiver. The server's IP is hardcoded for operational security.
-- `py.server_message_secret`: This script, running on the receiver's machine, intercepts the incoming messages and deciphers them back into text.
-
-## 🎁 Bonus Challenge
-
-Given the unreliability of UDP (messages may arrive out of order or go missing), devise a method to ensure messages are received correctly and in the right sequence. Implement this enhanced protocol for an even more secure communication line.
-
-## 📦 Requirements
-
-- Python 3.x
-- Scapy
-- Two computers on the same network, designated as the client (sender) and server (receiver).
-
-## 🔧 Setup
-
-1. Ensure Python and Scapy are installed on both machines.
-2. Deploy `py.client_message_secret` on the sender's machine.
-3. Deploy `py.server_message_secret` on the receiver's machine.
-4. Run the server script first to start listening.
-5. Run the client script, enter your secret message, and watch the magic happen.
+## 📦 Project Setup
+- **Requirements**: Python 3.x, Scapy, and two computers on the same network.
+- **Execution**:
+  1. Install Python and Scapy on both machines.
+  2. Deploy `client_message_secret.py` on the sender's machine.
+  3. Deploy `server_message_secret.py` on the receiver's machine.
+  4. Run the server script to start listening.
+  5. Execute the client script, enter the secret message, and observe the operation.
 
 ## 📖 Disclaimer
+This project, designed strictly for educational purposes, demonstrates responsible and ethical use of scripting for secure communication.
 
-This project is for educational purposes only. Use these scripts responsibly and ethically.
-
-Good luck, agents! Remember, in the world of covert communications, silence is golden, and port numbers are your best friend.
+**Agents, your silent work has spoken volumes. In the realm of covert operations, you've proven that with the right knowledge, port numbers can indeed be powerful allies.**
