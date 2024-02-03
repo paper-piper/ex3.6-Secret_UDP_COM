@@ -1,5 +1,13 @@
+"""
+Author: Yoni Reichert
+Program name: ex3.6-Secret-UDP-COM
+Description: sends secret messages through the usage of sending empty message to different ports
+Date: 03-02-2023
+"""
+
 from scapy.all import *
 from scapy.layers.inet import *
+import logging
 
 logging.basicConfig(
     filename='Sender.log',
