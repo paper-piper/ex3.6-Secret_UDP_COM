@@ -64,10 +64,10 @@ def validate_message(message):
     try:
         for char in message:
             char_value = ord(char)
-            if 0 <= char_value <= 127:
-                return True
+            if not 0 <= char_value <= 127:
+                return False
     finally:
-        return False
+        return True
 
 
 def main():
