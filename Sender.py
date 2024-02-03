@@ -19,6 +19,8 @@ def send_message(message):
     :param message: the message that is ment to be sent
     :return bool: an indicator for the function's success
     """
+    if not validate_message(message):
+        return False
     for char in message:
         try:
             send_packet(char)
@@ -50,11 +52,12 @@ def create_packet(char):
     return char_packet
 
 
-def validate_char(char):
+def validate_message(message):
     try:
-        char_value = ord(char)
-        if 0 <= char_value <= 127:
-            return True
+        for char in message:
+            char_value = ord(char)
+            if 0 <= char_value <= 127:
+                return True
     finally:
         return False
 
