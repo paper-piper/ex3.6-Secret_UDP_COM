@@ -12,26 +12,40 @@ logging.basicConfig(
 )
 logger = logging.getLogger('Receiver.log')
 
+SENDER_MESSAGE = ""
 
-def filter_packet(packet):
+
+def filter_packet(char_packet):
     """
     Filter packets to only include UDP with dport in ASCII range and empty payload
-    :param packet: the packet to be checked
+    :param char_packet: the packet to be checked
     :return bool: True if packet matches criteria, False otherwise
     """
-    return UDP in packet and packet[UDP].dport <= 127 and (not packet[UDP].payload or len(packet[UDP].payload) == 0)
+    is_udp = UDP in char_packet
+    if is_udp and char_packet[UDP].dport <= 127:
+        payload = char_packet[UDP].payload
+        if isinstance(payload, Padding) and payload.load == b'\x00' * len(payload.load):
+            return True
+    return False
 
 
-def process_packet(packet):
+def process_packet(char_packet):
     """
     Process a packet to extract the character from the dport and log it
-    :param packet: the packet to be processed
+    :param char_packet: the packet to be processed
     :return: None
     """
+    global SENDER_MESSAGE
     try:
-        char = chr(packet[UDP].dport)
-        logger.info(f"Received character: {char}")
-        print(f"Received: {char}")
+        char_value = char_packet[UDP].dport
+        if char_value == 3:
+            logger.info(f"Reached the end of a message: {SENDER_MESSAGE}")
+            print(f"Received Message! \r\n {SENDER_MESSAGE}")
+            SENDER_MESSAGE = ""
+        else:
+            char = chr(char_value)
+            logger.info(f"Received character: {char}")
+            SENDER_MESSAGE += char
     except ValueError as e:
         logger.exception(f"Error processing packet: {e}")
 

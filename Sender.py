@@ -9,7 +9,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger('Sender.log')
 
-dIP = "127.0.0.1"
+dIP = "192.168.1.106"
+COM_END = chr(3)
 
 
 def send_message(message):
@@ -24,6 +25,7 @@ def send_message(message):
         except Scapy_Exception as s:
             logger.exception(f"Received scapy exception while sending char {char}: {s}")
             return False
+    send_packet(COM_END)
     return True
 
 
@@ -48,6 +50,15 @@ def create_packet(char):
     return char_packet
 
 
+def validate_char(char):
+    try:
+        char_value = ord(char)
+        if 0 <= char_value <= 127:
+            return True
+    finally:
+        return False
+
+
 def main():
     message = input("Enter message: ")
     if send_message(message):
@@ -56,5 +67,4 @@ def main():
 
 
 if __name__ == '__main__':
-    assert create_packet('a')
     main()
