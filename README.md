@@ -13,9 +13,6 @@ Leveraging the ASCII table as their codebook, our team encoded messages characte
 - `client_message_secret.py`: Operated by the sender, this script prompts for a message and then transmits it covertly.
 - `server_message_secret.py`: Situated on the receiver's end, this script captures and deciphers the incoming messages.
 
-## 🎁 Bonus Challenge Overcome
-Addressing UDP's inherent unreliability, our team devised a foolproof method ensuring messages arrive accurately and sequentially. This advanced protocol has significantly enhanced our communication security.
-
 ## 📦 Project Setup
 - **Requirements**: Python 3.x, Scapy, and two computers on the same network.
 - **Execution**:
