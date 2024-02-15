@@ -66,8 +66,9 @@ def validate_message(message):
             char_value = ord(char)
             if not 0 <= char_value <= 127:
                 return False
-    finally:
-        return True
+    except IndexError as i:
+        logger.error(f"received index error {i}")
+    return True
 
 
 def main():
@@ -78,4 +79,6 @@ def main():
 
 
 if __name__ == '__main__':
+    assert validate_message("Valid")
+    assert not validate_message(f"Invalid {chr(128)}")
     main()
