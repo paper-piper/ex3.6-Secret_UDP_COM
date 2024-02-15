@@ -29,8 +29,11 @@ def filter_packet(char_packet):
     :return bool: True if packet matches criteria, False otherwise
     """
     is_udp = UDP in char_packet
-    if is_udp and char_packet[UDP].dport <= 127:
+    if is_udp and char_packet[UDP].dport <= MAX_PORT:
         payload = char_packet[UDP].payload
+        length = len(payload.load)
+        if length == 0:
+            return True
         if isinstance(payload, Padding) and payload.load == b'\x00' * len(payload.load):
             return True
     return False
@@ -72,4 +75,8 @@ def main():
 
 
 if __name__ == '__main__':
+    packet = char_packet = IP(dst=0) / UDP(dport=ord("a")) / b""  # a valid packet
+    assert filter_packet(packet)
+    packet = IP(dst=0) / UDP(dport=ord("a")) / b"fdfd"  # invalid packet, payload not empty
+    assert not filter_packet(packet)
     main()
